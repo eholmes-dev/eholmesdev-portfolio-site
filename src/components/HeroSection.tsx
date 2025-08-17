@@ -35,7 +35,7 @@ const HeroSection = () => {
           
           <div className="flex justify-center space-x-6 mb-12">
             <Button variant="outline" size="lg" className="glow-on-hover" asChild>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/echolmes/" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-5 w-5" />
                 GitHub
               </a>
