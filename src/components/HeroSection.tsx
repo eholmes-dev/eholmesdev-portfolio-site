@@ -22,11 +22,11 @@ const HeroSection = () => {
       <div className="container-width section-padding relative z-10">
         <div className="text-center animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Hi, I'm <span className="hero-text">John Doe</span>
+            Hi, I'm <span className="hero-text">Ethan Holmes</span>
           </h1>
           
           <h2 className="text-2xl md:text-3xl text-muted-foreground mb-4">
-            Software Engineer & AI Enthusiast
+            Software Engineer & Passionate Learner
           </h2>
           
           <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-muted-foreground">
