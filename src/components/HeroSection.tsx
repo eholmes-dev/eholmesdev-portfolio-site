@@ -22,7 +22,7 @@ const HeroSection = () => {
       <div className="container-width section-padding relative z-10">
         <div className="text-center animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Hi, I'm <span className="hero-text">Ethan Holmes</span>
+            Hi, I'm <span className="hero-text">Ethan</span>
           </h1>
           
           <h2 className="text-2xl md:text-3xl text-muted-foreground mb-4">
@@ -30,8 +30,7 @@ const HeroSection = () => {
           </h2>
           
           <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-muted-foreground">
-            Crafting innovative solutions with cutting-edge technology, 
-            specializing in AI-driven applications and scalable web development.
+            If you ask me whether or not I can do something, my answer will either be 'yes' or 'I'll learn how.'
           </p>
           
           <div className="flex justify-center space-x-6 mb-12">
