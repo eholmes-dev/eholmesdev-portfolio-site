@@ -131,21 +131,21 @@ const ContactSection = () => {
                 
                 <div className="space-y-4">
                   <Button variant="outline" size="lg" className="w-full justify-start" asChild>
-                    <a href="mailto:john.doe@example.com">
+                    <a href="mailto:ethan.holmes@example.com">
                       <Mail className="mr-3 h-5 w-5" />
-                      john.doe@example.com
+                      ethan.holmes@example.com
                     </a>
                   </Button>
                   
                   <Button variant="outline" size="lg" className="w-full justify-start" asChild>
-                    <a href="https://www.linkedin.com/in/echolmes/" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/eholmes-dev" target="_blank" rel="noopener noreferrer">
                       <Github className="mr-3 h-5 w-5" />
                       GitHub Profile
                     </a>
                   </Button>
                   
                   <Button variant="outline" size="lg" className="w-full justify-start" asChild>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.linkedin.com/in/echolmes/" target="_blank" rel="noopener noreferrer">
                       <Linkedin className="mr-3 h-5 w-5" />
                       LinkedIn Profile
                     </a>

@@ -138,4 +138,8 @@ All colors MUST be HSL.
   .code-block {
     @apply bg-[hsl(var(--code-bg))] border border-border rounded-lg p-4 font-mono text-sm;
   }
+  
+  .nav-hover {
+    @apply hover:bg-white hover:text-[hsl(220_26%_8%)] transition-colors duration-300;
+  }
 }

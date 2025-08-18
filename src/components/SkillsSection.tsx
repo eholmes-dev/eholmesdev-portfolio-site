@@ -5,12 +5,11 @@ import { Code, Trophy, BookOpen, Target } from 'lucide-react';
 
 const SkillsSection = () => {
   const technicalSkills = [
-    { name: "JavaScript/TypeScript", level: 95 },
-    { name: "Python", level: 90 },
-    { name: "React/Next.js", level: 93 },
-    { name: "Node.js", level: 88 },
-    { name: "Machine Learning", level: 85 },
-    { name: "Cloud Platforms", level: 82 },
+    { name: "C# .NET", level: 80 },
+    { name: "APIs & Integrations", level: 75 },
+    { name: "Python", level: 70 },
+    { name: "Cloud Platforms", level: 65 },
+    { name: "AI & Machine Learning", level: 50 },
   ];
 
   const leetcodeStats = {

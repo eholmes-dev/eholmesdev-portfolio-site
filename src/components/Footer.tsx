@@ -9,24 +9,24 @@ const Footer = () => {
       <div className="container-width section-padding py-12">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4 hero-text">John Doe</h3>
+            <h3 className="text-xl font-bold mb-4 hero-text">Ethan Holmes</h3>
             <p className="text-muted-foreground mb-4">
               Software Engineer passionate about AI and creating innovative solutions 
               that make a positive impact.
             </p>
             <div className="flex space-x-4">
               <Button variant="ghost" size="sm" asChild>
-                <a href="https://www.linkedin.com/in/echolmes/" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/eholmes-dev" target="_blank" rel="noopener noreferrer">
                   <Github className="h-5 w-5" />
                 </a>
               </Button>
               <Button variant="ghost" size="sm" asChild>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/echolmes/" target="_blank" rel="noopener noreferrer">
                   <Linkedin className="h-5 w-5" />
                 </a>
               </Button>
               <Button variant="ghost" size="sm" asChild>
-                <a href="mailto:john.doe@example.com">
+                <a href="mailto:ethan.holmes@example.com">
                   <Mail className="h-5 w-5" />
                 </a>
               </Button>
@@ -69,7 +69,7 @@ const Footer = () => {
         
         <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} John Doe. All rights reserved.
+            © {currentYear} Ethan Holmes. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground flex items-center mt-4 md:mt-0">
             Built with <Heart className="h-4 w-4 mx-1 text-red-500" /> using React & TypeScript

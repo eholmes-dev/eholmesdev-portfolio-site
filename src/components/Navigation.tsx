@@ -35,7 +35,7 @@ const Navigation = () => {
       <div className="container-width section-padding">
         <div className="flex items-center justify-between h-16">
           <div className="text-xl font-bold hero-text">
-            JD
+            EH
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
@@ -43,7 +43,7 @@ const Navigation = () => {
               <Button
                 key={item.id}
                 variant="ghost"
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-foreground nav-hover"
                 onClick={() => scrollToSection(item.id)}
               >
                 {item.label}

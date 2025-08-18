@@ -9,28 +9,28 @@ import project3 from '@/assets/project3.jpg';
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "AI Analytics Dashboard",
-      description: "A comprehensive analytics platform powered by machine learning algorithms for real-time data insights and predictive analytics.",
+      title: "Market Trend Analyzer",
+      description: "Stock analytics application powered by machine learning algorithms for real-time data insights and predictive analytics.",
       image: project1,
-      technologies: ["Python", "TensorFlow", "React", "Node.js", "PostgreSQL"],
+      technologies: ["Python", "Azure Function", "AI", "API", "Cosmos DB", "React", "Chart.js"],
       githubUrl: "#",
       liveUrl: "#",
       featured: true
     },
     {
-      title: "Smart Chat Assistant",
-      description: "An intelligent chatbot application using natural language processing to provide customer support automation.",
+      title: "Stock Data Streaming",
+      description: "A serverless application that streams the latest stock prices, news, and social media mentions, analyzes sentiment with AI, and visualizes trends in an interactive dashboard.",
       image: project2,
-      technologies: ["React Native", "OpenAI API", "Firebase", "TypeScript"],
+      technologies: ["C#.NET", "Azure Functions", "Cosmos DB", "API", "Kafka"],
       githubUrl: "#",
       liveUrl: "#",
       featured: true
     },
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with advanced search capabilities, recommendation engine, and seamless payment integration.",
+      title: "Crime Tracking Dashboard",
+      description: "Interactive US crime dashboard aggregating real-time reports and public datasets, visualizing trends, hotspots, and patterns on an interactive map.",
       image: project3,
-      technologies: ["Next.js", "Stripe", "MongoDB", "Redis", "Docker"],
+      technologies: ["Python", "PostgreSQL", "React", "Leaflet.js", "Chart.js", "Azure Cognitive Services"],
       githubUrl: "#",
       liveUrl: "#",
       featured: false
@@ -100,7 +100,7 @@ const ProjectsSection = () => {
         
         <div className="text-center mt-12">
           <Button variant="outline" size="lg" asChild>
-            <a href="https://www.linkedin.com/in/echolmes/" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/eholmes-dev" target="_blank" rel="noopener noreferrer">
               <Github className="mr-2 h-5 w-5" />
               View All Projects on GitHub
             </a>

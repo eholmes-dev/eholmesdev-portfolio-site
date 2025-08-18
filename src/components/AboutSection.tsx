@@ -16,9 +16,9 @@ const AboutSection = () => {
           <div className="space-y-6">
             <div className="prose prose-lg">
               <p className="text-foreground mb-6">
-                I'm a Software Engineer with a deep passion for artificial intelligence and machine learning. 
+                I'm a Software Engineer with a deep interest in artificial intelligence and machine learning. 
                 With over 5 years of experience in full-stack development, I specialize in building scalable 
-                applications that leverage the latest AI technologies.
+                software solutions that leverage the latest technologies and best practices.
               </p>
               
               <p className="text-foreground mb-6">
@@ -28,8 +28,8 @@ const AboutSection = () => {
               </p>
               
               <p className="text-foreground">
-                When I'm not coding, you'll find me exploring the latest research papers, contributing to 
-                open-source projects, or mentoring aspiring developers in the tech community.
+                When I'm not coding, you'll find me exploring the latest tech trends, running, attempting to cook, 
+                at the muscle church (the gym), or frolicking in nature with my girlfriend and doggos.
               </p>
             </div>
           </div>
@@ -43,14 +43,16 @@ const AboutSection = () => {
                 </div>
                 <div className="space-y-3">
                   <div>
-                    <h4 className="font-medium">M.S. Computer Science</h4>
-                    <p className="text-muted-foreground">Stanford University • 2019-2021</p>
-                    <p className="text-sm text-muted-foreground">Specialization: Machine Learning & AI</p>
+                    <h4 className="font-medium">A.A.S. Computer Software Development</h4>
+                    <p className="text-muted-foreground">Kirkwood Community College • 2017-2019</p>
                   </div>
                   <div>
-                    <h4 className="font-medium">B.S. Software Engineering</h4>
-                    <p className="text-muted-foreground">MIT • 2015-2019</p>
-                    <p className="text-sm text-muted-foreground">Magna Cum Laude</p>
+                    <h4 className="font-medium">Certificate: .NET Programming</h4>
+                    <p className="text-muted-foreground">Kirkwood Community College • 2017-2019</p>
+                  </div>
+                  <div>
+                    <h4 className="font-medium">Certificate: Java Programming</h4>
+                    <p className="text-muted-foreground">Kirkwood Community College • 2017-2019</p>
                   </div>
                 </div>
               </CardContent>
@@ -68,8 +70,8 @@ const AboutSection = () => {
               <Card className="glow-on-hover">
                 <CardContent className="p-6 text-center">
                   <Brain className="h-8 w-8 text-accent mx-auto mb-2" />
-                  <h4 className="font-semibold">50+ Projects</h4>
-                  <p className="text-sm text-muted-foreground">AI & Web Apps</p>
+                  <h4 className="font-semibold">20+ Projects</h4>
+                  <p className="text-sm text-muted-foreground">Apps, APIs, Automations</p>
                 </CardContent>
               </Card>
             </div>
