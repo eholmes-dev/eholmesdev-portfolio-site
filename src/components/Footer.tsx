@@ -35,23 +35,23 @@ const Footer = () => {
           
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
-            <div className="space-y-2">
-              <Button variant="ghost" size="sm" className="p-0 h-auto justify-start" 
-                onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
+            <div className="text-sm text-muted-foreground space-y-1">
+              <p className="cursor-pointer hover:text-foreground transition-colors"
+                 onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
                 About
-              </Button>
-              <Button variant="ghost" size="sm" className="p-0 h-auto justify-start"
-                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+              </p>
+              <p className="cursor-pointer hover:text-foreground transition-colors"
+                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
                 Projects
-              </Button>
-              <Button variant="ghost" size="sm" className="p-0 h-auto justify-start"
-                onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}>
+              </p>
+              <p className="cursor-pointer hover:text-foreground transition-colors"
+                 onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}>
                 Skills
-              </Button>
-              <Button variant="ghost" size="sm" className="p-0 h-auto justify-start"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+              </p>
+              <p className="cursor-pointer hover:text-foreground transition-colors"
+                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
                 Contact
-              </Button>
+              </p>
             </div>
           </div>
           
