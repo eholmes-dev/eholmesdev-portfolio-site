@@ -111,7 +111,7 @@ const SkillsSection = () => {
             rel="noopener noreferrer"
             className="block h-full"
           >
-            <Card className="glow-on-hover cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/20 h-full">
+            <Card className="glow-on-hover cursor-pointer transition-all duration-300 hover:scale-105 h-full">
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <div className="flex items-center">
