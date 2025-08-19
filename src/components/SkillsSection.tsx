@@ -61,15 +61,15 @@ const SkillsSection = () => {
   }, []);
 
   const currentLearning = [
-    "Advanced Computer Vision - Pluralsight",
-    "Kubernetes Orchestration - Microsoft Learn",
-    "System Design Patterns - Coursera"
+    "AI & Generative AI Explained - Pluralsight",
+    "OpenAI for Developers - Pluralsight",
+    "Artificial Intelligence: Foundations - Pluralsight"
   ];
 
   const recentCourses = [
-    "Deep Learning Specialization",
-    "AWS Solutions Architect",
-    "Advanced React Patterns"
+    "Microsoft Certified: Azure Fundamentals (AZ-900)",
+    "Introduction to Azure AI Services",
+    "Move an Application to the Cloud with Azure"
   ];
 
   return (
@@ -195,12 +195,6 @@ const SkillsSection = () => {
           </Card>
         </div>
         
-        {/* Integration Status */}
-        <div className="mt-8 text-center">
-          <p className="text-sm text-muted-foreground">
-            ✅ LeetCode API integrated • Microsoft Learn & PluralSight APIs coming soon
-          </p>
-        </div>
       </div>
     </section>
   );
