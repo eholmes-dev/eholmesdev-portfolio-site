@@ -2,8 +2,19 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Code, Trophy, BookOpen, Target } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useState, useEffect } from 'react';
 
 const SkillsSection = () => {
+  const [leetcodeStats, setLeetcodeStats] = useState({
+    totalSolved: 450,
+    ranking: "Top 5%",
+    easy: 180,
+    medium: 220,
+    hard: 50
+  });
+  const [isLoading, setIsLoading] = useState(true);
+
   const technicalSkills = [
     { name: "C# .NET", level: 80 },
     { name: "APIs & Integrations", level: 75 },
@@ -12,13 +23,37 @@ const SkillsSection = () => {
     { name: "AI & Machine Learning", level: 50 },
   ];
 
-  const leetcodeStats = {
-    totalSolved: 450,
-    ranking: "Top 5%",
-    easy: 180,
-    medium: 220,
-    hard: 50
-  };
+  useEffect(() => {
+    const fetchLeetCodeStats = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('leetcode-stats', {
+          body: { username: 'eholmes-dev' }
+        });
+
+        if (error) {
+          console.error('Error fetching LeetCode stats:', error);
+          // Use fallback data if available
+          if (data?.fallback) {
+            setLeetcodeStats(data.fallback);
+          }
+        } else if (data) {
+          setLeetcodeStats({
+            totalSolved: data.totalSolved,
+            ranking: data.ranking,
+            easy: data.easy,
+            medium: data.medium,
+            hard: data.hard
+          });
+        }
+      } catch (err) {
+        console.error('Failed to fetch LeetCode stats:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchLeetCodeStats();
+  }, []);
 
   const currentLearning = [
     "Advanced Computer Vision - Pluralsight",
@@ -70,6 +105,7 @@ const SkillsSection = () => {
               <CardTitle className="flex items-center">
                 <Trophy className="mr-2 h-5 w-5 text-accent" />
                 LeetCode Statistics
+                {isLoading && <span className="ml-2 text-xs text-muted-foreground">Loading...</span>}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -144,10 +180,10 @@ const SkillsSection = () => {
           </Card>
         </div>
         
-        {/* Microsoft Learn & PluralSight Integration Note */}
+        {/* Integration Status */}
         <div className="mt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            * Real-time data integration with LeetCode, Microsoft Learn, and PluralSight APIs coming soon
+            ✅ LeetCode API integrated • Microsoft Learn & PluralSight APIs coming soon
           </p>
         </div>
       </div>
