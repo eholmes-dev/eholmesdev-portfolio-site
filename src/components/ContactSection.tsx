@@ -151,9 +151,9 @@ const ContactSection = () => {
                 
                 <div className="space-y-4">
                   <Button variant="outline" size="lg" className="w-full justify-start" asChild>
-                    <a href="mailto:ethan.holmes@example.com" target="_blank" rel="noopener noreferrer">
+                    <a href="mailto:eholmes.dev@gmail.com" target="_blank" rel="noopener noreferrer">
                       <Mail className="mr-3 h-5 w-5" />
-                      ethan.holmes@example.com
+                      eholmes.dev@gmail.com
                     </a>
                   </Button>
                   
