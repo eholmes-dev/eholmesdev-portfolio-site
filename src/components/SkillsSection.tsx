@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { Code, Trophy, BookOpen, Target } from 'lucide-react';
+import { Code, Trophy, BookOpen, Target, ExternalLink } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useState, useEffect } from 'react';
 
@@ -105,12 +105,16 @@ const SkillsSection = () => {
           </Card>
           
           {/* LeetCode Stats */}
-          <Card className="glow-on-hover">
+          <Card className="glow-on-hover cursor-pointer hover:shadow-lg transition-all duration-300" 
+                onClick={() => window.open('https://leetcode.com/u/eholmes-dev/', '_blank', 'noopener,noreferrer')}>
             <CardHeader>
-              <CardTitle className="flex items-center">
-                <Trophy className="mr-2 h-5 w-5 text-accent" />
-                LeetCode Statistics
-                {isLoading && <span className="ml-2 text-xs text-muted-foreground">Loading...</span>}
+              <CardTitle className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <Trophy className="mr-2 h-5 w-5 text-accent" />
+                  LeetCode Statistics
+                  {isLoading && <span className="ml-2 text-xs text-muted-foreground">Loading...</span>}
+                </div>
+                <ExternalLink className="h-4 w-4 text-muted-foreground hover:text-accent transition-colors" />
               </CardTitle>
             </CardHeader>
             <CardContent>
