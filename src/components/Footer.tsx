@@ -26,7 +26,7 @@ const Footer = () => {
                 </a>
               </Button>
               <Button variant="ghost" size="sm" asChild>
-                <a href="mailto:ethan.holmes@example.com">
+                <a href="mailto:ethan.holmes@example.com" target="_blank" rel="noopener noreferrer">
                   <Mail className="h-5 w-5" />
                 </a>
               </Button>
