@@ -109,9 +109,9 @@ const SkillsSection = () => {
             href="https://leetcode.com/u/eholmes-dev/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="block"
+            className="block h-full"
           >
-            <Card className="glow-on-hover cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/20">
+            <Card className="glow-on-hover cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/20 h-full">
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <div className="flex items-center">
