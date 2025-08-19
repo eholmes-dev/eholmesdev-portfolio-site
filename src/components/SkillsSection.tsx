@@ -26,9 +26,12 @@ const SkillsSection = () => {
   useEffect(() => {
     const fetchLeetCodeStats = async () => {
       try {
+        console.log('Calling LeetCode stats function...');
         const { data, error } = await supabase.functions.invoke('leetcode-stats', {
           body: { username: 'eholmes-dev' }
         });
+
+        console.log('Function response:', { data, error });
 
         if (error) {
           console.error('Error fetching LeetCode stats:', error);
@@ -37,6 +40,7 @@ const SkillsSection = () => {
             setLeetcodeStats(data.fallback);
           }
         } else if (data) {
+          console.log('Updating stats with real data:', data);
           setLeetcodeStats({
             totalSolved: data.totalSolved,
             ranking: data.ranking,
@@ -47,6 +51,7 @@ const SkillsSection = () => {
         }
       } catch (err) {
         console.error('Failed to fetch LeetCode stats:', err);
+        // Keep fallback stats on error
       } finally {
         setIsLoading(false);
       }
