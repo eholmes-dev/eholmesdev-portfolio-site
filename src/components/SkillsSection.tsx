@@ -105,8 +105,13 @@ const SkillsSection = () => {
           </Card>
           
           {/* LeetCode Stats */}
-          <Card className="glow-on-hover cursor-pointer hover:shadow-lg transition-all duration-300" 
-                onClick={() => window.open('https://leetcode.com/u/eholmes-dev/', '_blank', 'noopener,noreferrer')}>
+          <a 
+            href="https://leetcode.com/u/eholmes-dev/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="block"
+          >
+            <Card className="glow-on-hover cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/20">
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -141,7 +146,8 @@ const SkillsSection = () => {
                 </div>
               </div>
             </CardContent>
-          </Card>
+            </Card>
+          </a>
         </div>
         
         <div className="grid lg:grid-cols-2 gap-8">
