@@ -18,9 +18,9 @@ const SkillsSection = () => {
   const technicalSkills = [
     { name: "C# .NET", level: 80 },
     { name: "APIs & Integrations", level: 75 },
-    { name: "Python", level: 70 },
-    { name: "Cloud Platforms", level: 65 },
-    { name: "AI & Machine Learning", level: 50 },
+    { name: "Python", level: 65 },
+    { name: "Cloud Platforms", level: 50 },
+    { name: "AI & Machine Learning", level: 30 },
   ];
 
   useEffect(() => {
