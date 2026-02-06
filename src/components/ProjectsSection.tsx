@@ -9,17 +9,17 @@ import project3 from '@/assets/project3.jpg';
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "Market Trend Analyzer",
-      description: "Stock analytics application powered by machine learning algorithms for real-time data insights and predictive analytics.",
+      title: "Portfolio Website",
+      description: "You're here!",
       image: project1,
-      technologies: ["Python", "Azure Function", "AI", "API", "Cosmos DB", "React", "Chart.js"],
-      githubUrl: "#",
-      liveUrl: "#",
+      technologies: ["Lovable.dev", "TypeScript", "CSS"],
+      githubUrl: "https://github.com/eholmes-dev/eholmesdev-portfolio-site",
+      liveUrl: null,
       featured: true
     },
     {
-      title: "Stock Data Streaming",
-      description: "A serverless application that streams the latest stock prices, news, and social media mentions, analyzes sentiment with AI, and visualizes trends in an interactive dashboard.",
+      title: "Real-Time Market Intelligence Dashboard",
+      description: "A real-time financial analytics application integrating data streaming, stock APIs, and market news to generate investment opportunities.",
       image: project2,
       technologies: ["C#.NET", "Azure Functions", "Cosmos DB", "API", "Kafka"],
       githubUrl: "#",
@@ -72,11 +72,13 @@ const ProjectsSection = () => {
                         <Github className="h-4 w-4" />
                       </a>
                     </Button>
-                    <Button size="sm" variant="ghost" asChild>
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
-                    </Button>
+                    {project.liveUrl && (
+                      <Button size="sm" variant="ghost" asChild>
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </CardTitle>
               </CardHeader>
