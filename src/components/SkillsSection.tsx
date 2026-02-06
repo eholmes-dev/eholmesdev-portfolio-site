@@ -68,8 +68,8 @@ const SkillsSection = () => {
 
   const recentCourses = [
     "Microsoft Certified: Azure Fundamentals (AZ-900)",
-    "Introduction to Azure AI Services",
-    "Move an Application to the Cloud with Azure"
+    "Azure Fundamentals: Describe Azure management and governance",
+    "Azure Fundamentals: Describe Azure architecture and services"
   ];
 
   return (
