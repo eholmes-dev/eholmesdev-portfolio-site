@@ -172,27 +172,37 @@ const SkillsSection = () => {
           </Card>
           
           {/* Recent Completions */}
-          <Card className="glow-on-hover">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <BookOpen className="mr-2 h-5 w-5 text-primary" />
-                What I've Been Up To
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {recentCourses.map((course, index) => (
-                  <div key={index} className="flex items-center p-3 bg-background rounded-lg">
-                    <div className="w-2 h-2 bg-accent rounded-full mr-3"></div>
-                    <span className="text-sm">{course}</span>
-                    <Badge variant="secondary" className="ml-auto text-xs">
-                      Completed
-                    </Badge>
+          <a 
+            href="https://learn.microsoft.com/en-us/users/EthanHolmes-8497" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="block"
+          >
+            <Card className="glow-on-hover cursor-pointer transition-all duration-300 hover:scale-105">
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <BookOpen className="mr-2 h-5 w-5 text-primary" />
+                    What I've Been Up To
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                  <ExternalLink className="h-4 w-4 text-muted-foreground hover:text-accent transition-colors" />
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {recentCourses.map((course, index) => (
+                    <div key={index} className="flex items-center p-3 bg-background rounded-lg">
+                      <div className="w-2 h-2 bg-accent rounded-full mr-3"></div>
+                      <span className="text-sm">{course}</span>
+                      <Badge variant="secondary" className="ml-auto text-xs">
+                        Completed
+                      </Badge>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </a>
         </div>
         
       </div>
