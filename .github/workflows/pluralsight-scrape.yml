@@ -39,11 +39,12 @@ jobs:
           if-no-files-found: ignore
 
       - name: Upload failure debug artifacts
-        if: failure()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pluralsight-debug
           path: |
             scripts/pluralsight-scraper/failure.png
             scripts/pluralsight-scraper/failure.html
-          if-no-files-found: ignore
+            scripts/pluralsight-scraper/*.log
+          if-no-files-found: warn
