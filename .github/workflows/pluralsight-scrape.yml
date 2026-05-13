@@ -23,6 +23,8 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Run scraper
+        id: run_scraper
+        continue-on-error: true
         working-directory: scripts/pluralsight-scraper
         env:
           PLURALSIGHT_EMAIL: ${{ secrets.PLURALSIGHT_EMAIL }}
@@ -43,8 +45,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pluralsight-debug
-          path: |
-            scripts/pluralsight-scraper/failure.png
-            scripts/pluralsight-scraper/failure.html
-            scripts/pluralsight-scraper/*.log
+          path: scripts/pluralsight-scraper/debug
           if-no-files-found: warn
+
+      - name: Fail workflow if scraper failed
+        if: steps.run_scraper.outcome == 'failure'
+        run: exit 1
