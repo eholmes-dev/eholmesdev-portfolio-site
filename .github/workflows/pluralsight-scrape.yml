@@ -1,0 +1,39 @@
+name: Scrape Pluralsight Currently Learning
+
+on:
+  schedule:
+    - cron: '0 */12 * * *' # every 12 hours
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install deps
+        working-directory: scripts/pluralsight-scraper
+        run: |
+          npm install
+          npx playwright install --with-deps chromium
+
+      - name: Run scraper
+        working-directory: scripts/pluralsight-scraper
+        env:
+          PLURALSIGHT_EMAIL: ${{ secrets.PLURALSIGHT_EMAIL }}
+          PLURALSIGHT_PASSWORD: ${{ secrets.PLURALSIGHT_PASSWORD }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scrape.mjs
+
+      - name: Upload cache artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pluralsight-cache
+          path: scripts/pluralsight-scraper/cache.json
+          if-no-files-found: ignore
