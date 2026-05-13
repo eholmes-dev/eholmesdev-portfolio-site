@@ -32,23 +32,24 @@ async function scrape() {
   });
   const page = await context.newPage();
 
+  page.setDefaultTimeout(60000);
+  page.setDefaultNavigationTimeout(60000);
+
   try {
     // Login
     await page.goto('https://app.pluralsight.com/id/', { waitUntil: 'domcontentloaded' });
     await page.fill('input[name="Username"], input[type="email"]', PLURALSIGHT_EMAIL);
     await page.fill('input[name="Password"], input[type="password"]', PLURALSIGHT_PASSWORD);
-    await Promise.all([
-      page.waitForLoadState('networkidle'),
-      page.click('button[type="submit"]'),
-    ]);
+    await page.click('button[type="submit"]');
 
-    // Navigate to "Continue learning" / dashboard
-    await page.goto('https://app.pluralsight.com/library/', { waitUntil: 'networkidle' });
+    // Wait until we leave the /id/ login page (successful auth redirects away)
+    await page.waitForURL((url) => !url.pathname.startsWith('/id'), { timeout: 60000 });
+    await page.waitForLoadState('domcontentloaded');
 
-    // Heuristic extraction: look for in-progress course cards on dashboard.
-    // Pluralsight markup changes; we try multiple selectors.
-    await page.goto('https://app.pluralsight.com/id', { waitUntil: 'networkidle' }).catch(() => {});
-    await page.goto('https://app.pluralsight.com/', { waitUntil: 'networkidle' }).catch(() => {});
+    // Land on the home dashboard which shows the "Continue learning" rail
+    await page.goto('https://app.pluralsight.com/', { waitUntil: 'domcontentloaded' });
+    // Give the SPA time to hydrate the rail (avoid networkidle — analytics never settle)
+    await page.waitForTimeout(8000);
 
     const courses = await page.evaluate(() => {
       const results = [];
