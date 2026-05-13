@@ -38,6 +38,30 @@ export type Database = {
         }
         Relationships: []
       }
+      pluralsight_courses: {
+        Row: {
+          id: string
+          last_accessed_at: string | null
+          position: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          last_accessed_at?: string | null
+          position: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          last_accessed_at?: string | null
+          position?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
