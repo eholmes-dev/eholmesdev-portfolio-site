@@ -60,11 +60,25 @@ const SkillsSection = () => {
     fetchLeetCodeStats();
   }, []);
 
-  const currentLearning = [
+  const [currentLearning, setCurrentLearning] = useState<string[]>([
     "AI & Generative AI Explained - Pluralsight",
     "OpenAI for Developers - Pluralsight",
-    "Artificial Intelligence: Foundations - Pluralsight"
-  ];
+    "Artificial Intelligence: Foundations - Pluralsight",
+  ]);
+
+  useEffect(() => {
+    const fetchPluralsight = async () => {
+      const { data, error } = await supabase
+        .from('pluralsight_courses')
+        .select('title')
+        .order('position', { ascending: true })
+        .limit(3);
+      if (!error && data && data.length > 0) {
+        setCurrentLearning(data.map((c) => c.title));
+      }
+    };
+    fetchPluralsight();
+  }, []);
 
   const recentCourses = [
     "Microsoft Certified: Azure Fundamentals (AZ-900)",
