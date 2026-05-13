@@ -34,6 +34,7 @@ jobs:
         run: node scrape.mjs
 
       - name: Upload cache artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pluralsight-cache
