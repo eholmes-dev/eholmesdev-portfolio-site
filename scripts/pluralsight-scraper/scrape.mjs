@@ -23,8 +23,19 @@ for (const [k, v] of Object.entries({
 }
 
 const CACHE_PATH = path.resolve('cache.json');
+const DEBUG_DIR = path.resolve('debug');
+const DEBUG_LOG_PATH = path.join(DEBUG_DIR, 'run.log');
+
+async function logDebug(message) {
+  const line = `[${new Date().toISOString()}] ${message}`;
+  console.log(line);
+  await fs.appendFile(DEBUG_LOG_PATH, `${line}\n`);
+}
 
 async function scrape() {
+  await fs.mkdir(DEBUG_DIR, { recursive: true });
+  await fs.writeFile(DEBUG_LOG_PATH, '');
+
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
     userAgent:
@@ -37,17 +48,27 @@ async function scrape() {
 
   try {
     // Login
+    await logDebug('Opening Pluralsight login page');
     await page.goto('https://app.pluralsight.com/id/', { waitUntil: 'domcontentloaded' });
     await page.fill('input[name="Username"], input[type="email"]', PLURALSIGHT_EMAIL);
     await page.fill('input[name="Password"], input[type="password"]', PLURALSIGHT_PASSWORD);
-    await page.click('button[type="submit"]');
+    await logDebug(`Login page loaded at ${page.url()}`);
+    await Promise.allSettled([
+      page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 20000 }),
+      page.click('button[type="submit"]'),
+    ]);
 
-    // Wait until we leave the /id/ login page (successful auth redirects away)
-    await page.waitForURL((url) => !url.pathname.startsWith('/id'), { timeout: 60000 });
-    await page.waitForLoadState('domcontentloaded');
+    await logDebug(`Post-submit URL: ${page.url()}`);
+    await page.waitForTimeout(5000);
 
     // Land on the home dashboard which shows the "Continue learning" rail
+    await logDebug('Opening Pluralsight home dashboard');
     await page.goto('https://app.pluralsight.com/', { waitUntil: 'domcontentloaded' });
+    await logDebug(`Dashboard URL after login attempt: ${page.url()}`);
+    if (page.url().includes('/id')) {
+      throw new Error(`Login did not complete; still on authentication flow at ${page.url()}`);
+    }
+
     // Give the SPA time to hydrate the rail (avoid networkidle — analytics never settle)
     await page.waitForTimeout(8000);
 
@@ -120,12 +141,29 @@ async function scrape() {
       .insert(enriched);
     if (insErr) throw insErr;
 
+    await logDebug(`Synced ${enriched.length} courses to Supabase`);
     console.log('Updated courses:', enriched);
   } catch (err) {
     try {
-      await page.screenshot({ path: 'failure.png', fullPage: true });
-      await fs.writeFile('failure.html', await page.content());
-      console.error('Saved failure.png and failure.html for debugging');
+      const screenshotPath = path.join(DEBUG_DIR, 'failure.png');
+      const htmlPath = path.join(DEBUG_DIR, 'failure.html');
+      const statePath = path.join(DEBUG_DIR, 'failure-state.json');
+
+      await page.screenshot({ path: screenshotPath, fullPage: true });
+      await fs.writeFile(htmlPath, await page.content());
+      await fs.writeFile(
+        statePath,
+        JSON.stringify(
+          {
+            url: page.url(),
+            title: await page.title().catch(() => null),
+            error: err instanceof Error ? { name: err.name, message: err.message, stack: err.stack } : err,
+          },
+          null,
+          2
+        )
+      );
+      await logDebug(`Saved failure artifacts to ${DEBUG_DIR}`);
     } catch {}
     throw err;
   } finally {
