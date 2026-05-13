@@ -50,27 +50,37 @@ async function scrape() {
     // Login
     await logDebug('Opening Pluralsight login page');
     await page.goto('https://app.pluralsight.com/id/', { waitUntil: 'domcontentloaded' });
+    
+    await logDebug('Filling email field');
     await page.fill('input[name="Username"], input[type="email"]', PLURALSIGHT_EMAIL);
+    
+    await logDebug('Filling password field');
     await page.fill('input[name="Password"], input[type="password"]', PLURALSIGHT_PASSWORD);
+    
     await logDebug(`Login page loaded at ${page.url()}`);
+    
+    // Use waitForNavigation instead of waitForLoadState to handle redirect
+    await logDebug('Clicking submit button');
     await Promise.allSettled([
       page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 20000 }),
       page.click('button[type="submit"]'),
     ]);
 
     await logDebug(`Post-submit URL: ${page.url()}`);
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(3000);
 
     // Land on the home dashboard which shows the "Continue learning" rail
     await logDebug('Opening Pluralsight home dashboard');
     await page.goto('https://app.pluralsight.com/', { waitUntil: 'domcontentloaded' });
-    await logDebug(`Dashboard URL after login attempt: ${page.url()}`);
+    await logDebug(`Dashboard URL: ${page.url()}`);
+    
     if (page.url().includes('/id')) {
       throw new Error(`Login did not complete; still on authentication flow at ${page.url()}`);
     }
 
     // Give the SPA time to hydrate the rail (avoid networkidle — analytics never settle)
-    await page.waitForTimeout(8000);
+    await logDebug('Waiting for page to stabilize');
+    await page.waitForTimeout(5000);
 
     const courses = await page.evaluate(() => {
       const results = [];
@@ -107,6 +117,8 @@ async function scrape() {
 
       return results.slice(0, 3);
     });
+
+    await logDebug(`Found ${courses.length} courses`);
 
     if (!courses.length) {
       throw new Error(
@@ -149,6 +161,7 @@ async function scrape() {
       const htmlPath = path.join(DEBUG_DIR, 'failure.html');
       const statePath = path.join(DEBUG_DIR, 'failure-state.json');
 
+      await logDebug('Capturing failure diagnostics...');
       await page.screenshot({ path: screenshotPath, fullPage: true });
       await fs.writeFile(htmlPath, await page.content());
       await fs.writeFile(
@@ -164,7 +177,9 @@ async function scrape() {
         )
       );
       await logDebug(`Saved failure artifacts to ${DEBUG_DIR}`);
-    } catch {}
+    } catch (debugErr) {
+      console.error('Failed to capture debug info:', debugErr);
+    }
     throw err;
   } finally {
     await browser.close();
