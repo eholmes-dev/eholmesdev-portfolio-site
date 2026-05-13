@@ -121,6 +121,13 @@ async function scrape() {
     if (insErr) throw insErr;
 
     console.log('Updated courses:', enriched);
+  } catch (err) {
+    try {
+      await page.screenshot({ path: 'failure.png', fullPage: true });
+      await fs.writeFile('failure.html', await page.content());
+      console.error('Saved failure.png and failure.html for debugging');
+    } catch {}
+    throw err;
   } finally {
     await browser.close();
   }
