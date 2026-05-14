@@ -48,6 +48,8 @@ async function scrape() {
 
   try {
     // Login
+    await logDebug('Browser launched successfully');
+    await logDebug('Attempting to navigate to Pluralsight login page...');
     await logDebug('Opening Pluralsight login page');
     await page.goto('https://app.pluralsight.com/id/', { waitUntil: 'domcontentloaded' });
     
